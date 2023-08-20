@@ -22,25 +22,22 @@
 </head>
 
 <body>
-  <section id="games">
-    <!-- Header Starts -->
+  <section class="games">
     <header>
-      <img src="./img/wraper.png" class="w-100" alt="Diablo background">
+      <img src="./img/wraper.png" class="w-100" alt="game photo" />
     </header>
-    <!-- Header Ends -->
-    <!-- Navbar Starts -->
-    <nav class="navbar navbar-expand-lg position-sticky top-0 z-3 col-md-6 col-lg-9 rounded-4 mb-5">
-      <div class="container-fluid">
-        <a class="navbar-brand text-uppercase" href="index.html">
-          <img src="./img/logo-sm.png" style="max-width: 40px;" alt="G logo for gaming website">
-          <span>game reviews</span>
-        </a>
+
+    <nav class="navbar navbar-expand-lg nav-bg position-sticky top-0 z-3 col-md-6 col-lg-9 rounded-2">
+      <div class="container">
+        <h5 class="navbar-brand mb-0 text-uppercase">
+          <img src="./img/logo-sm.png" alt="logo photo" style="max-width: 40px" /> Game Reviews
+        </h5>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <div class="collapse small navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 menu small">
             <li class="nav-item">
               <a role="button" class="nav-link active text-uppercase" aria-current="page"
                 data-category="mmorpg">mmorpg</a>
@@ -64,18 +61,17 @@
         </div>
       </div>
     </nav>
-    <!-- Navbar Ends -->
-    <!-- Landing Starts -->
-    <section class="landing mb-5">
-      <div class="container">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4" id="rowBody">
+
+    <main class="container my-5 home">
+      <section class="position-relative">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4" id="gameData">
+
         </div>
-      </div>
-    </section>
-    <!-- Landing Ends -->
+      </section>
+    </main>
   </section>
-  <!-- Details Starts -->
-  <section class="details d-none" id="details">
+
+  <section class="details d-none">
     <div class="container">
       <header class="hstack justify-content-between">
         <h1 class="text-center h3 py-4 text-white">Details Game</h1>
@@ -86,8 +82,7 @@
       </div>
     </div>
   </section>
-  <!-- Details Ends -->
-  <!-- Loader Starts -->
+
   <div class="loading d-none">
     <span class="loader"></span>
   </div>

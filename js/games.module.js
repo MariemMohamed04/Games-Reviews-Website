@@ -1,47 +1,57 @@
-import { UI } from "./ui.module.js";
+import { Details } from "./details.module.js";
+import { Ui } from "./ui.module.js";
 
 export class Games {
   constructor() {
-    document.querySelectorAll(".nav-link").forEach(link => {
-      link.addEventListener("click", () => {
-        this.linking(link);
-        const category = link.dataset.category;
-        this.GetGames(category);
+    this.getGames("mmorpg");
+
+    document.querySelectorAll(".menu a").forEach((link) => {
+      link.addEventListener("click", (e) => {
+        document.querySelector(".menu .active").classList.remove("active");
+        e.target.classList.add("active");
+        this.getGames(e.target.dataset.category);
       });
     });
-    this.loader = document.querySelector(".loading");
-    this.details = document.getElementById("details");
-    this.games = document.getElementById("games");
-    this.ui = new UI();
-    
-    this.GetGames("MMORPG");
-  }  
 
-  linking(link) {
-    document.querySelector(".navbar-nav .nav-item .active").classList.remove("active");
-    link.classList.add("active");
+    this.ui = new Ui();
   }
 
-  async GetGames(cat) {
-    this.loader.classList.remove("d-none");
+  async getGames(category) {
+    const loading = document.querySelector(".loading");
+    loading.classList.remove("d-none");
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "a27da97175msh85eeeb317dfdbbbp1536b2jsn1ea7a5539264",
+        "X-RapidAPI-Key": "761b8a3226msh868f0d927cb6ea4p117ef0jsn46d63d281712",
         "X-RapidAPI-Host": "free-to-play-games-database.p.rapidapi.com",
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
     };
-    const api = await fetch(`https://free-to-play-games-database.p.rapidapi.com/api/games?category=${cat}`, options);
+
+    const api = await fetch(
+      `https://free-to-play-games-database.p.rapidapi.com/api/games?category=${category}`,
+      options
+    );
     const response = await api.json();
-    this.loader.classList.add("d-none");    
-    console.log(response)
-    this.ui.display(response);
-    document.querySelectorAll(".card").forEach(card => {
-      card.addEventListener("click", ()=> {
-        this.details.classList.remove("d-none");
-        this.games.classList.add("d-none");
-        this.details
+
+    this.ui.displayDataGame(response);
+    this.startEvent();
+    loading.classList.add("d-none");
+  }
+
+  startEvent() {
+    document.querySelectorAll(".card").forEach((item) => {
+      item.addEventListener("click", () => {
+        const id = item.dataset.id;
+        this.showDetails(id);
       });
     });
+  }
+
+  showDetails(idGame) {
+    const details = new Details(idGame);
+    document.querySelector(".games").classList.add("d-none");
+    document.querySelector(".details").classList.remove("d-none");
   }
 }
